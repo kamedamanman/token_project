@@ -2,13 +2,22 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>トークン生成成功!</h1>
-    <p>トークン: <script>document.write(new URLSearchParams(window.location.search).get('token'));</script></p>
+    <p>トークン: <span id="tokenDisplay"></span></p>
     <a href="/">戻る</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URLからトークンの値を取得
+            const token = new URLSearchParams(window.location.search).get('token');
+            document.getElementById('tokenDisplay').textContent = token;
+            
+            // iOSのネイティブコードにトークンをポスト
+            window.webkit.messageHandlers.iosListener.postMessage(token);
+        });
+    </script>
 </body>
 </html>

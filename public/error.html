@@ -2,12 +2,18 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>エラーが発生しました。</h1>
+    <p>トークン生成に失敗しました。</p>
     <a href="/">戻る</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // iOSのネイティブコードにエラーメッセージをポスト
+            window.webkit.messageHandlers.iosListener.postMessage('Token generation failed');
+        });
+    </script>
 </body>
 </html>
